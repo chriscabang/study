@@ -1,5 +1,25 @@
 #include <stdio.h>
 
+/**  bubble sort  */
+
+void bubble_sort(int arr[], int n) {
+  int i, j, temp;
+  for (i = 0; i < n - 1; i++) {
+    for (j = 0; j < n - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        // Swap the elements
+        temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+}
+
+/**  quick sort  **/
+
+#include <stdio.h>
+
 void swap(int* a, int* b) {
     int temp = *a;
     *a = *b;
@@ -48,7 +68,12 @@ int main() {
 
     quicksort(arr, 0, size - 1);
 
-    printf("Sorted array: ");
+    printf("Quick sort: ");
+    printArray(arr, size);
+
+    bubble_sort(arr, size);
+
+    printf("Bubble sort: ");
     printArray(arr, size);
 
     return 0;
