@@ -33,7 +33,7 @@ clean:
 	rm -rf $(BUILD_PATH)
 
 help:
-	@echo "usage: $(MAKE) [tool] ..."
+	@echo "usage: $(MAKE) [target] ..."
 	@echo ""
 	@echo "Build all the studies using either of the following:"
 	@echo "    make"
