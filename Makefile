@@ -17,10 +17,10 @@ $(CC): prerequisites
 $(TARGETS): $(CC)
 	$(CC) $@/main.c -o bin/$$(basename $@)
 
-study:
-	@echo "Modules: " $$(basename $(TARGETS))
-	@read module;
-	@echo $$module;
+study: $(CC)
+	@echo "Modules: " $$(basename $(TARGETS));
+	@read -p "> " module; \
+	$(CC) src/$$module/main.c -o bin/$$module
 
 studies: $(TARGETS)
 
