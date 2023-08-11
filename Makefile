@@ -6,7 +6,6 @@ BUILD_PATH	:= $(PWD)/bin
 TOOLCHAIN_PREFIX := 
 CC					:= $(TOOLCHAIN_PREFIX)gcc
 
-.PHONY: all prerequisites
 all: studies
 
 prerequisites:
@@ -17,18 +16,16 @@ $(CC): prerequisites
 $(TARGETS): $(CC)
 	$(CC) $@/main.c -o bin/$$(basename $@)
 
-modules:
-	@echo " Modules available:"
-	@echo "  " $$(basename $(TARGETS));
+module: $(CC)
+	@test -n "$(MODULE)" || (echo 'MODULE must be set, Ex: make study MODULE=sort\rModules: ' $$(basename $(TARGETS)) && exit 1)
+	$(CC) src/$(MODULE)/main.c -o bin/$(MODULE)
 
-study: $(CC)
-	@echo "Modules: " $$(basename $(TARGETS));
-	@read -p "> " module; \
-	$(CC) src/$$module/main.c -o bin/$$module
+study: module
 
 studies: $(TARGETS)
 
-.PHONY: clean
+.PHONY: all study clean help
+
 clean:
 	rm -rf $(BUILD_PATH)
 
@@ -38,13 +35,10 @@ help:
 	@echo "Build all the studies using either of the following:"
 	@echo "    make"
 	@echo "    make all"
-	@echo "    make studies"
-	@echo ""
-	@echo "List available modules to build:"
-	@echo "    make modules"
 	@echo ""
 	@echo "Build specific study modules only:"
-	@echo "    make study"
+	@echo "    make study MODULE=??"
+	@echo "    Modules available: " $$(basename $(TARGETS))
 	@echo ""
 	@echo "Clean built binaries"
 	@echo "    make clean"
