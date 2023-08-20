@@ -1,10 +1,10 @@
-XLEN				:= 64
-STUDY				:= $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-TARGETS			:= $(wildcard src/*)
-BUILD_PATH	:= $(PWD)/bin
+XLEN        := 64
+STUDY       := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+TARGETS     := $(wildcard src/*)
+BUILD_PATH  := $(PWD)/bin
 
 TOOLCHAIN_PREFIX := 
-CC					:= $(TOOLCHAIN_PREFIX)gcc
+CC               := $(TOOLCHAIN_PREFIX)gcc
 
 all: studies
 
