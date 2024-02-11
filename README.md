@@ -2,8 +2,7 @@
 
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
-Sets of solution to common algorithmic problems. This repository is the authors personal study
-notes.
+A collection of study on algorithmic problems, implemented in C. 
 
 ## Quickstart
 
@@ -12,7 +11,7 @@ All compiled modules are in `bin/`.
 The following modules are available.
 
 ```console
-src
+study
 ├── array-manipulation
 │   # Search max contiguous value and the smallest missing value.
 ├── binary-gap
@@ -25,8 +24,9 @@ src
 │   # Computing fibonacci value
 ├── fizzbuzz
 │   # Does a fizzbuzz sequence
-├── flood-fill
+├── maze-solving
 │   # Maze solving algorithm flood fill.
+│   └── flood-fill
 ├── pascals-triangle
 │   # Building a pascal triangle
 ├── product-code
