@@ -1,6 +1,6 @@
 XLEN        := 64
 STUDY       := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-TARGETS     := $(wildcard src/*)
+TARGETS     := $(wildcard **/src/)
 BUILD_PATH  := $(PWD)/bin
 
 TOOLCHAIN_PREFIX := 

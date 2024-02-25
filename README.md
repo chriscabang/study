@@ -20,21 +20,24 @@ study
 │   # The ever favority binary search tree
 ├── bit-manipulation
 │   # Bit manipulation demonstration
+├── bubble-sort
+│   # Does a bubble demonstration
+├── dijkstra-shortest-path
+│   # Find shortest path using Dijkstra algorithm
 ├── fibonacci
 │   # Computing fibonacci value
 ├── fizzbuzz
 │   # Does a fizzbuzz sequence
-├── maze-solving
+├── flood-fill
 │   # Maze solving algorithm flood fill.
-│   └── flood-fill
 ├── pascals-triangle
 │   # Building a pascal triangle
 ├── product-code
 │   # Linked listing a product code
-├── root-mean-square-error
-│   # Computes the root mean square error value
-└── sort
-    # Does a bubble and quick sort demonstration
+├── quick-sort
+│   # Does a quick sort demonstration
+└── root-mean-square-error
+    # Computes the root mean square error value
 ```
 
 ### Build all modules
