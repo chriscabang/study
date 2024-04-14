@@ -1,71 +1,55 @@
 #include <stdio.h>
 
-#define ROWS 5
-#define COLS 5
+#define ROWS 6
+#define COLS 6
 
-int maze[ROWS][COLS] = {
-    {0, 1, 0, 0, 0},
-    {0, 1, 0, 1, 0},
-    {0, 0, 0, 0, 0},
-    {0, 1, 1, 1, 0},
-    {0, 0, 0, 1, 0}
-};
-
-int visited[ROWS][COLS] = {0};
-
-// Structure to represent a cell in the maze
-struct Cell {
-    int row;
-    int col;
-};
-
-// Function to check if a cell is valid
-int isValid(int row, int col) {
-    return (row >= 0) && (row < ROWS) && (col >= 0) && (col < COLS);
+// Function to print the maze
+void printMaze(char maze[ROWS][COLS]) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            printf("%c ", maze[i][j]);
+        }
+        printf("\n");
+    }
 }
 
-// Function to perform flood fill
-void floodFill(int startRow, int startCol) {
-    int rowOffset[] = {-1, 0, 0, 1};
-    int colOffset[] = {0, -1, 1, 0};
-
-    // Create a stack for DFS
-    struct Cell stack[ROWS * COLS];
-
-    // Push the starting cell
-    int top = 0;
-    stack[top].row = startRow;
-    stack[top].col = startCol;
-    visited[startRow][startCol] = 1;
-
-    // Perform DFS
-    while (top >= 0) {
-        struct Cell current = stack[top--];
-
-        // Check if current cell is the goal
-        if (maze[current.row][current.col] == 2) {
-            printf("Maze solved!\n");
-            return;
-        }
-
-        // Visit all neighbors
-        for (int i = 0; i < 4; i++) {
-            int newRow = current.row + rowOffset[i];
-            int newCol = current.col + colOffset[i];
-
-            // If the neighbor is a valid path and not visited, mark it as visited and push to stack
-            if (isValid(newRow, newCol) && maze[newRow][newCol] == 0 && !visited[newRow][newCol]) {
-                visited[newRow][newCol] = 1;
-                stack[++top].row = newRow;
-                stack[top].col = newCol;
-            }
-        }
+// Flood fill algorithm
+// :TODO: 
+// - algorithm is insufficient. 
+// - keep working on this
+void floodFill(char maze[ROWS][COLS], int x, int y) {
+    if (x < 0 || x >= ROWS || y < 0 || y >= COLS || maze[x][y] != ' ') {
+        return;
     }
 
-    printf("Maze cannot be solved!\n");
+    // Mark current cell as visited
+    maze[x][y] = '.';
+
+    // Recursive calls to neighboring cells
+    floodFill(maze, x + 1, y); // Down
+    floodFill(maze, x - 1, y); // Up
+    floodFill(maze, x, y + 1); // Right
+    floodFill(maze, x, y - 1); // Left
 }
 
 int main() {
-    floodFill(0, 0);
+    char maze[ROWS][COLS] = {
+        {' ', ' ', '#', '#', '#', '#'},
+        {'#', ' ', '#', ' ', ' ', '#'},
+        {'#', ' ', '#', ' ', '#', '#'},
+        {'#', ' ', ' ', ' ', '#', ' '},
+        {'#', '#', '#', ' ', '#', ' '},
+        {'#', ' ', ' ', ' ', ' ', ' '},
+    };
+
+    printf("Original maze:\n");
+    printMaze(maze);
+
+    // Start flood fill from position (0, 0)
+    floodFill(maze, 0, 0);
+
+    printf("\nMaze after flood fill:\n");
+    printMaze(maze);
+
     return 0;
 }
