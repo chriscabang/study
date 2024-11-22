@@ -2,8 +2,7 @@
 
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
-Sets of solution to common algorithmic problems. This repository is the authors personal study
-notes.
+A collection of study on algorithmic problems, implemented in C. 
 
 ## Quickstart
 
@@ -12,7 +11,7 @@ All compiled modules are in `bin/`.
 The following modules are available.
 
 ```console
-src
+study
 ├── array-manipulation
 │   # Search max contiguous value and the smallest missing value.
 ├── binary-gap
@@ -21,6 +20,10 @@ src
 │   # The ever favority binary search tree
 ├── bit-manipulation
 │   # Bit manipulation demonstration
+├── bubble-sort
+│   # Does a bubble demonstration
+├── dijkstra-shortest-path
+│   # Find shortest path using Dijkstra algorithm
 ├── fibonacci
 │   # Computing fibonacci value
 ├── fizzbuzz
@@ -31,10 +34,10 @@ src
 │   # Building a pascal triangle
 ├── product-code
 │   # Linked listing a product code
-├── root-mean-square-error
-│   # Computes the root mean square error value
-└── sort
-    # Does a bubble and quick sort demonstration
+├── quick-sort
+│   # Does a quick sort demonstration
+└── root-mean-square-error
+    # Computes the root mean square error value
 ```
 
 ### Build all modules

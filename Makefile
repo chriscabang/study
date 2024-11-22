@@ -1,12 +1,12 @@
 XLEN        := 64
 STUDY       := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-TARGETS     := $(wildcard src/*)
+TARGETS     := $(patsubst %/src,%,$(wildcard **/src))
 BUILD_PATH  := $(PWD)/bin
 
 TOOLCHAIN_PREFIX := 
 CC               := $(TOOLCHAIN_PREFIX)gcc
 
-all: studies
+all: $(TARGETS)
 
 prerequisites:
 	mkdir -p $(BUILD_PATH)
@@ -14,17 +14,11 @@ prerequisites:
 $(CC): prerequisites
 
 $(TARGETS): $(CC)
-	$(CC) $@/main.c -o bin/$$(basename $@)
+	$(CC) $@/src/main.c -o bin/$$(basename $@)
 
-module: $(CC)
-	@test -n "$(MODULE)" || (echo 'MODULE must be set, Ex: make study MODULE=sort\rModules: ' $$(basename $(TARGETS)) && exit 1)
-	$(CC) src/$(MODULE)/main.c -o bin/$(MODULE)
+test: all
 
-study: module
-
-studies: $(TARGETS)
-
-.PHONY: all study clean help
+.PHONY: all test clean help
 
 clean:
 	rm -rf $(BUILD_PATH)
@@ -37,9 +31,7 @@ help:
 	@echo "    make all"
 	@echo ""
 	@echo "Build specific study modules only:"
-	@echo "    make study MODULE=??"
-	@echo "    Modules available: " $$(basename $(TARGETS))
+	@echo "    make [$(TARGETS)]"
 	@echo ""
 	@echo "Clean built binaries"
 	@echo "    make clean"
-	@echo ""
