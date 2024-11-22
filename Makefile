@@ -16,7 +16,9 @@ $(CC): prerequisites
 $(TARGETS): $(CC)
 	$(CC) $@/src/main.c -o bin/$$(basename $@)
 
-.PHONY: all clean help
+test: all
+
+.PHONY: all test clean help
 
 clean:
 	rm -rf $(BUILD_PATH)
@@ -33,4 +35,3 @@ help:
 	@echo ""
 	@echo "Clean built binaries"
 	@echo "    make clean"
-	@echo ""
