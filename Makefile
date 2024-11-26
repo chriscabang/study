@@ -14,7 +14,7 @@ prerequisites:
 $(CC): prerequisites
 
 $(TARGETS): $(CC)
-	$(CC) $@/src/main.c -o bin/$$(basename $@)
+	$(CC) -g $@/src/main.c -o bin/$$(basename $@) -lm
 
 test: all
 
