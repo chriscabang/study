@@ -14,7 +14,6 @@ int main() {
   printf("or (%d, %d) = %d\n", x, y, or (x, y));
   printf("xor(%d, %d) = %d\n", x, y, xor(x, y));
   printf("not(%d, %d) = %d\n", x, y, not(x   ));
-  printf("");
 
   return 0;
 }
