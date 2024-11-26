@@ -33,6 +33,7 @@ int get_median(int nums1[], int m, int nums2[], int n) {
 
   qsort(nums, size, sizeof(int), compare);
 
+  // check if odd or even, that's how we start computing for median
   return median;
 }
 
