@@ -23,7 +23,7 @@ int compare(const void* a, const void* b) {
   return (*(int*)a - *(int*)b);
 }
 
-int get_median(int nums1[], int m, int nums2[], int n) {
+double get_median(int nums1[], int m, int nums2[], int n) {
   double median = 0;
 
   int size = m + n;
@@ -34,12 +34,22 @@ int get_median(int nums1[], int m, int nums2[], int n) {
   qsort(nums, size, sizeof(int), compare);
 
   // check if odd or even, that's how we start computing for median
+  if (size % 2 == 1) {
+    median = (double)(nums[(int)(size / 2)]);
+  } else {
+    median = ((double)(nums[(int)( (size - 1) / 2)     ])  +
+              (double)(nums[(int)(((size - 1) / 2) + 1)])) / 2;
+  }
   return median;
 }
 
 int main() {
-  int nums1[2] = { 1,3 };
-  int nums2[1] = { 2 };
-  double median = get_median(nums1, sizeof(nums1)/sizeof(nums1[0]), nums2, sizeof(nums2)/sizeof(nums2[0]));
+  int nums1[2] = { 1, 3 };
+  int nums2[2] = { 2, 4 };
+  double median = get_median(
+      nums1, 
+      sizeof(nums1)/sizeof(nums1[0]), 
+      nums2, 
+      sizeof(nums2)/sizeof(nums2[0]));
   return 0;
 }
